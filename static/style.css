@@ -1,43 +1,58 @@
+/* Basic page reset and fonts */
+html, body {
+    height: 100%;
+}
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
     color: #333;
+    -webkit-font-smoothing: antialiased;
 }
 
+/* Layout container: use flex column to make footer (input) stick to bottom */
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
+    height: 100vh; /* full viewport so we can use flex layout */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 12px;
 }
 
 header h1 {
     color: #2c3e50;
+    margin: 6px 0;
 }
 
+/* Chat area expands to fill available space */
 .chat-container {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    height: 500px;
+    padding: 16px;
+    flex: 1 1 auto; /* grow */
+    min-height: 0; /* important for overflow to work inside flex */
     overflow-y: auto;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     border: 1px solid #e0e0e0;
 }
 
+/* Messages */
 .message {
-    margin-bottom: 15px;
-    padding: 10px 15px;
+    margin-bottom: 12px;
+    padding: 10px 14px;
     border-radius: 18px;
     max-width: 80%;
     word-wrap: break-word;
+    line-height: 1.4;
 }
 
 .user-message {
@@ -51,6 +66,22 @@ header h1 {
     margin-right: auto;
 }
 
+/* Markdown content styling */
+.bot-content p { margin: 0 0 8px 0; }
+.bot-content pre {
+    background: #272822;
+    color: #f8f8f2;
+    padding: 12px;
+    border-radius: 6px;
+    overflow: auto;
+}
+.bot-content code {
+    background: rgba(27,31,35,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+}
+
 .sources {
     margin-top: 10px;
     font-size: 0.9em;
@@ -59,9 +90,13 @@ header h1 {
     padding-left: 10px;
 }
 
+/* Input area stays at bottom and is responsive */
 .input-container {
     display: flex;
     gap: 10px;
+    align-items: center;
+    flex: 0 0 auto; /* don't shrink */
+    padding-top: 8px;
 }
 
 #userInput {
@@ -70,10 +105,11 @@ header h1 {
     border: 1px solid #ddd;
     border-radius: 20px;
     font-size: 16px;
+    min-width: 0; /* allow shrinking in flex */
 }
 
 #sendButton {
-    padding: 10px 20px;
+    padding: 10px 18px;
     background-color: #3498db;
     color: white;
     border: none;
@@ -85,3 +121,33 @@ header h1 {
 #sendButton:hover {
     background-color: #2980b9;
 }
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding: 12px;
+    }
+    header h1 { font-size: 18px; }
+    .chat-container { padding: 12px; }
+    .message { max-width: 92%; border-radius: 12px; padding: 10px; }
+    #userInput { font-size: 15px; padding: 10px 12px; }
+    #sendButton { padding: 10px 14px; font-size: 14px; }
+}
+
+/* Tablet / small desktop */
+@media (min-width: 601px) and (max-width: 900px) {
+    .container { padding: 16px; }
+    .message { max-width: 85%; }
+}
+
+/* Optional: make input sticky to bottom on small view when keyboard opens */
+.input-container.sticky {
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0), #fff);
+    padding-bottom: 8px;
+}
+
+/* Accessibility improvements */
+#userInput:focus { outline: 2px solid rgba(52,152,219,0.3); }
+#sendButton:focus { outline: 2px solid rgba(52,152,219,0.3); }

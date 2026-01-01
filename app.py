@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, jsonify, Response
-import json
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_mistralai import ChatMistralAI
@@ -34,7 +33,7 @@ def prompt_with_context(request: ModelRequest) -> str:
     docs_content = "\n\n".join(doc.page_content for doc in retrieved_docs)
 
     system_message = (
-        "Tu es un sauveteur professionnel et tu donnes des instructions à un apprenti sauveteur. Utilise ce contexte pour répondre:"
+        "Tu es un sauveteur secouriste de la protection civile et tu donnes des instructions à un apprenti sauveteur. Utilise ce contexte pour répondre. Tu ne dois répondre uniquement si la réponse à la question est présente dans le texte:"
         f"\n\n{docs_content}"
     )
     return system_message
@@ -73,5 +72,5 @@ def ask():
 if __name__ == '__main__':
     app.run(host = '0.0.0.0',
             port = 5000,
-            debug=False
+            debug=True
             )

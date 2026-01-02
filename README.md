@@ -28,8 +28,9 @@ L'index FAISS est stocké dans `data/faiss_index/index.faiss`.
 1. Installez Python 3.14 : `py -3.14 -m venv venv`
 2. Activez l'environnement virtuel : `venv\Scripts\activate`
 3. Installez les dépendances : `pip install -r requirements.txt`
-4. Lancez l'application : `python app.py`
-5. Ouvrez `http://127.0.0.1:5000`
+4. Créer un fichier .env à la racine contenant votre clé API Mistral sous la variable API_KEY
+5. Lancez l'application : `python app.py`
+6. Ouvrez `http://127.0.0.1:5000`
 
 ## 📦️ Structure du dépôt
 

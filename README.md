@@ -4,34 +4,26 @@
 
 ---
 
-## Description
+## 📌 Description
 
 Ce projet combine un index vectoriel (FAISS) avec LangChain pour retrouver des passages pertinents dans une base de connaissances locale et générer des réponses à l'aide d'un modèle de langage. L'application expose une interface web via **Flask** et des endpoints JSON pour intégration ou tests.
-
 L'index FAISS est stocké dans `data/faiss_index/index.faiss`.
 
----
-
-## Fonctionnalités
+## 🛠 Fonctionnalités
 
 - Recherche et récupération de documents via FAISS
 - Assemblage de contexte et génération de réponse (RAG)
 - Interface web simple (dans `templates/` et `static/`)
 - Endpoints JSON pour automatisation et tests
 
----
+## ⚙️ Stack
 
-## Stack technique
-
-- Python + Flask
-- LangChain / langchain-core
-- Pydantic
+- Flask
+- LangChain
 - FAISS
 - HTML/CSS/JS (UI)
 
----
-
-## Installation rapide (Windows)
+## 🔧 Installation
 
 1. Installez Python 3.14 : `py -3.14 -m venv venv`
 2. Activez l'environnement virtuel : `venv\Scripts\activate`
@@ -39,9 +31,7 @@ L'index FAISS est stocké dans `data/faiss_index/index.faiss`.
 4. Lancez l'application : `python app.py`
 5. Ouvrez `http://127.0.0.1:5000`
 
----
-
-## Structure du dépôt
+## 📦️ Structure du dépôt
 
 - `app.py`  point d'entrée Flask
 - `templates/`  fichiers HTML (UI)
